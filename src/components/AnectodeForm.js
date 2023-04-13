@@ -14,12 +14,15 @@ const AnectodeForm = () => {
   };
 
   return (
-    <form onSubmit={addAnectode}>
-      <div>
-        <input name="anectode" />
-      </div>
-      <button type="submit">create</button>
-    </form>
+    <>
+      <h2>create new</h2>
+      <form onSubmit={addAnectode}>
+        <div>
+          <input name="anectode" />
+        </div>
+        <button type="submit">create</button>
+      </form>
+    </>
   );
 };
 
