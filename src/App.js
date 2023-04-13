@@ -5,10 +5,6 @@ const App = () => {
   const anecdotes = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const vote = (id) => {
-    console.log("vote", id);
-  };
-
   const addAnectode = (event) => {
     event.preventDefault();
     const content = event.target.anectode.value;
@@ -20,17 +16,19 @@ const App = () => {
   return (
     <div>
       <h2>Anecdotes</h2>
-      {anecdotes.map((anecdote) => (
-        <div key={anecdote.id}>
-          <div>{anecdote.content}</div>
-          <div>
-            has {anecdote.votes}
-            <button onClick={() => dispatch(increaseVote(anecdote.id))}>
-              vote
-            </button>
+      {anecdotes
+        .sort((a, b) => b.votes - a.votes)
+        .map((anecdote) => (
+          <div key={anecdote.id}>
+            <div>{anecdote.content}</div>
+            <div>
+              has {anecdote.votes}
+              <button onClick={() => dispatch(increaseVote(anecdote.id))}>
+                vote
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
       <h2>create new</h2>
       <form onSubmit={addAnectode}>
         <div>
