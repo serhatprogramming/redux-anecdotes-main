@@ -28,6 +28,15 @@ export const createAnectode = (anectode) => {
   };
 };
 
+export const increaseVote = (id) => {
+  return {
+    type: "VOTE",
+    payload: {
+      id,
+    },
+  };
+};
+
 const initialState = anecdotesAtStart.map(asObject);
 
 const reducer = (state = initialState, action) => {
