@@ -5,7 +5,6 @@ import {
   setNotification,
   removeNotification,
 } from "../reducers/notificationReducer";
-import Notification from "./Notification";
 
 const AnectodeForm = () => {
   const dispatch = useDispatch();
