@@ -19,7 +19,7 @@ const AnectodeList = () => {
   const dispatch = useDispatch();
   return (
     <>
-      {anectodes
+      {[...anectodes]
         .sort((a, b) => b.votes - a.votes)
         .filter((anectode) =>
           anectode.content.toLowerCase().includes(filter.toLowerCase())
