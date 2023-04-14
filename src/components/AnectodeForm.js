@@ -1,6 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { createAnectode } from "../reducers/anecdoteReducer";
+import {
+  setNotification,
+  removeNotification,
+} from "../reducers/notificationReducer";
+import Notification from "./Notification";
 
 const AnectodeForm = () => {
   const dispatch = useDispatch();
@@ -11,6 +16,10 @@ const AnectodeForm = () => {
     console.log("content: ", content);
     event.target.anectode.value = "";
     dispatch(createAnectode(content));
+    dispatch(setNotification(`you created a new anectode as "${content}"`));
+    setTimeout(() => {
+      dispatch(removeNotification());
+    }, "3000");
   };
 
   return (
