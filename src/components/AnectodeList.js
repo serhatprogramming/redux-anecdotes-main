@@ -14,14 +14,19 @@ const Anectode = ({ anectode, handleVote }) => {
 };
 
 const AnectodeList = () => {
-  const anecdotes = useSelector((state) => state);
+  const anectodes = useSelector((state) => state.anectodes);
+  const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
   return (
     <>
-      {anecdotes
+      {anectodes
         .sort((a, b) => b.votes - a.votes)
+        .filter((anectode) =>
+          anectode.content.toLowerCase().includes(filter.toLowerCase())
+        )
         .map((anecdote) => (
           <Anectode
+            key={anecdote.id}
             anectode={anecdote}
             handleVote={() => dispatch(increaseVote(anecdote.id))}
           />
