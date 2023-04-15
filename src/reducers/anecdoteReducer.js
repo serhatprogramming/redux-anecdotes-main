@@ -5,7 +5,7 @@ const anectodeSlice = createSlice({
   initialState: [],
   reducers: {
     createAnectode(state, action) {
-      //state.push(asObject(action.payload));
+      state.push(action.payload);
     },
     increaseVote(state, action) {
       return state.map((anectode) =>

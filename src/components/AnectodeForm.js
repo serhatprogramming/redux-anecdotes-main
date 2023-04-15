@@ -6,15 +6,18 @@ import {
   removeNotification,
 } from "../reducers/notificationReducer";
 
+import anecdoteService from "../services/anectodes";
+
 const AnectodeForm = () => {
   const dispatch = useDispatch();
 
-  const addAnectode = (event) => {
+  const addAnectode = async (event) => {
     event.preventDefault();
     const content = event.target.anectode.value;
-    console.log("content: ", content);
     event.target.anectode.value = "";
-    dispatch(createAnectode(content));
+    const newAnecdote = await anecdoteService.addAnectode(content);
+    // dispatch(createAnectode(content));
+    dispatch(createAnectode(newAnecdote));
     dispatch(setNotification(`you created a new anectode as "${content}"`));
     setTimeout(() => {
       dispatch(removeNotification());
