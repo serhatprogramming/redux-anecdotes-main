@@ -5,22 +5,22 @@ import {
   removeNotification,
 } from "../reducers/notificationReducer";
 import Notification from "./Notification";
-import anecdoteService from "../services/anectodes";
+import anecdoteService from "../services/anecdotes";
 
-const Anectode = ({ anectode, handleVote }) => {
+const Anecdote = ({ anecdote, handleVote }) => {
   return (
-    <div key={anectode.id}>
-      <div>{anectode.content}</div>
+    <div key={anecdote.id}>
+      <div>{anecdote.content}</div>
       <div>
-        has {anectode.votes}
+        has {anecdote.votes}
         <button onClick={handleVote}>vote</button>
       </div>
     </div>
   );
 };
 
-const AnectodeList = () => {
-  const anectodes = useSelector((state) => state.anectodes);
+const AnecdoteList = () => {
+  const anecdotes = useSelector((state) => state.anecdotes);
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
@@ -40,20 +40,20 @@ const AnectodeList = () => {
   return (
     <>
       <Notification />
-      {[...anectodes]
+      {[...anecdotes]
         .sort((a, b) => b.votes - a.votes)
-        .filter((anectode) =>
-          anectode.content.toLowerCase().includes(filter.toLowerCase())
+        .filter((anecdote) =>
+          anecdote.content.toLowerCase().includes(filter.toLowerCase())
         )
-        .map((anectode) => (
-          <Anectode
-            key={anectode.id}
-            anectode={anectode}
-            handleVote={() => handleVote(anectode)}
+        .map((anecdote) => (
+          <Anecdote
+            key={anecdote.id}
+            anecdote={anecdote}
+            handleVote={() => handleVote(anecdote)}
           />
         ))}
     </>
   );
 };
 
-export default AnectodeList;
+export default AnecdoteList;

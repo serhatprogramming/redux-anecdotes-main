@@ -8,7 +8,7 @@ const getAll = async () => {
   return response.data;
 };
 
-const addAnectode = async (content) => {
+const addAnecdote = async (content) => {
   const response = await axios.post(baseUrl, { content, votes: 0 });
   return response.data;
 };
@@ -18,4 +18,4 @@ const updateAnecdote = async (anecdote) => {
   return response.data;
 };
 
-export default { getAll, addAnectode, updateAnecdote };
+export default { getAll, addAnecdote, updateAnecdote };
