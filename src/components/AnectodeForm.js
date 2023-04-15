@@ -16,7 +16,6 @@ const AnectodeForm = () => {
     const content = event.target.anectode.value;
     event.target.anectode.value = "";
     const newAnecdote = await anecdoteService.addAnectode(content);
-    // dispatch(createAnectode(content));
     dispatch(createAnectode(newAnecdote));
     dispatch(setNotification(`you created a new anectode as "${content}"`));
     setTimeout(() => {

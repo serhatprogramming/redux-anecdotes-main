@@ -5,6 +5,7 @@ import {
   removeNotification,
 } from "../reducers/notificationReducer";
 import Notification from "./Notification";
+import anecdoteService from "../services/anectodes";
 
 const Anectode = ({ anectode, handleVote }) => {
   return (
@@ -23,9 +24,14 @@ const AnectodeList = () => {
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
-  const handleVote = (anectode) => {
-    dispatch(increaseVote(anectode.id));
-    dispatch(setNotification(`you voted ${anectode.content}`));
+  const handleVote = async (anecdote) => {
+    await anecdoteService.updateAnecdote({
+      ...anecdote,
+      votes: anecdote.votes + 1,
+    });
+    dispatch(increaseVote(anecdote.id));
+
+    dispatch(setNotification(`you voted ${anecdote.content}`));
     setTimeout(() => {
       dispatch(removeNotification());
     }, "3000");
