@@ -39,6 +39,11 @@
       "content": "another anecdote",
       "votes": 10,
       "id": "EkEWPzp"
+    },
+    {
+      "content": "new anecdote after thunk",
+      "votes": 0,
+      "id": "3U7UBOY"
     }
   ]
 }
