@@ -9,15 +9,19 @@ import {
 const AnecdoteForm = () => {
   const dispatch = useDispatch();
 
+  const handleNotification = (content) => {
+    dispatch(setNotification(`you created a new anecdote as "${content}"`));
+    setTimeout(() => {
+      dispatch(removeNotification());
+    }, "3000");
+  };
+
   const addAnecdote = async (event) => {
     event.preventDefault();
     const content = event.target.anecdote.value;
     event.target.anecdote.value = "";
     dispatch(createAnecdote(content));
-    dispatch(setNotification(`you created a new anecdote as "${content}"`));
-    setTimeout(() => {
-      dispatch(removeNotification());
-    }, "3000");
+    handleNotification(content);
   };
 
   return (

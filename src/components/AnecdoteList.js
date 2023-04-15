@@ -24,17 +24,20 @@ const AnecdoteList = () => {
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
+  const handleNotification = (anecdote) => {
+    dispatch(setNotification(`you voted ${anecdote.content}`));
+    setTimeout(() => {
+      dispatch(removeNotification());
+    }, "3000");
+  };
+
   const handleVote = async (anecdote) => {
     await anecdoteService.updateAnecdote({
       ...anecdote,
       votes: anecdote.votes + 1,
     });
     dispatch(increaseVote(anecdote.id));
-
-    dispatch(setNotification(`you voted ${anecdote.content}`));
-    setTimeout(() => {
-      dispatch(removeNotification());
-    }, "3000");
+    handleNotification(anecdote);
   };
 
   return (
